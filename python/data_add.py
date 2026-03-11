@@ -1,7 +1,6 @@
 # This is a sample Python script.
 import argparse
 
-
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
@@ -17,8 +16,8 @@ import argparse
 def quality_control(q,a):
     if " __ " in q or "____" in q or " _ " in q or " ___ " not in q:
         return False
-    else:
-        return True
+    if
+
 
 def add_info(q,a):
     # Use a breakpoint in the code line below to debug your script.
