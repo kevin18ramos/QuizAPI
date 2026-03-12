@@ -1,7 +1,8 @@
 import psycopg2
 from psycopg2 import OperationalError
 
-password="Enter Information"
+USER =readonly_test
+PASSWORD ='t3st123'
 
 def test_connection():
     try:
@@ -9,21 +10,21 @@ def test_connection():
             host="34.174.195.206",
             port=5432,
             database="PostgresI",      # change if needed
-            user="postgres",          # change if needed
-            password=password  # change if needed
+            user=USER,          # change if needed
+            password=PASSWORD  # change if needed
         )
 
         cursor = connection.cursor()
 
         # Run a simple query to verify the DB responds
         # Running tests
-        cursor.execute("select * from postgresI.papasitos.table_one;")
+        x = cursor.execute("select * from papasitos.table_one;")
 
         result = cursor.fetchone()
 
         print("Connection successful")
         print("PostgreSQL version:")
-        print(result[0])
+        print('result: ',result)
 
         cursor.close()
         connection.close()
