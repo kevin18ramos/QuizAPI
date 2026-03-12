@@ -1,7 +1,7 @@
 import psycopg2
 from psycopg2 import OperationalError
 
-USER =readonly_test
+USER ='readonly_test'
 PASSWORD ='t3st123'
 
 def test_connection():
@@ -9,9 +9,9 @@ def test_connection():
         connection = psycopg2.connect(
             host="34.174.195.206",
             port=5432,
-            database="PostgresI",      # change if needed
-            user=USER,          # change if needed
-            password=PASSWORD  # change if needed
+            database="PostgresI",
+            user=USER,
+            password=PASSWORD
         )
 
         cursor = connection.cursor()
