@@ -1,15 +1,16 @@
 import psycopg2
 from psycopg2 import OperationalError
 
+password="Enter Information"
 
 def test_connection():
     try:
         connection = psycopg2.connect(
-            host="localhost",
+            host="34.174.195.206",
             port=5432,
-            database="postgres",      # change if needed
+            database="PostgresI",      # change if needed
             user="postgres",          # change if needed
-            password="F1shnR0d"  # change if needed
+            password=password  # change if needed
         )
 
         cursor = connection.cursor()
