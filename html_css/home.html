@@ -18,26 +18,29 @@
             <section class="home-content">
 
                 <section class="project-panel">
-                    <div class="project-title">project name or selection</div>
+    <div class="project-title">Papa{{ project_title }}</div>
 
-                    <div class="file-list">
-                        {% for file in files %}
-                            <button class="file-btn" type="button">
-                                {{ file }}
-                            </button>
-                        {% else %}
-                            <button class="file-btn" type="button">file name</button>
-                            <button class="file-btn" type="button">file name</button>
-                            <button class="file-btn" type="button">file name</button>
-                            <button class="file-btn" type="button">file name</button>
-                        {% endfor %}
-                    </div>
-                </section>
+    <div class="file-list-scroll">
+        <div class="file-list">
+            {% for file in files %}
+                <button
+                    class="file-btn {% if selected_file == file %}selected{% endif %}"
+                    type="button"
+                >
+                    {{ file }}
+                </button>
+            {% else %}
+                <div class="file-empty">No files available.</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 
                 <section class="action-panel">
-                    <a href="/questions_cad" class="action-btn">Quiz</a>
-                    <a href="/edit" class="action-btn">Edit</a>
-                    <a href="/restore_default" class="action-btn">Restore Default</a>
+                    <a href="/quiz" class="action-btn">Take Quiz</a>
+                    <a href="/edit" class="action-btn">Edit
+                    <a href="/questions_cad" class="action-btn">Create Quiz</a>
+                    <a href="/restore_default" class="action-btn">Restore {{project_name}} Default</a>
                 </section>
 
             </section>

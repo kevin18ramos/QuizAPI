@@ -48,31 +48,54 @@ body {
 /* left panel */
 .project-panel {
     width: min(100%, 340px);
+    height: 420px;
     background: #c6c6c6;
     border-radius: 10px;
-    padding: 26px 22px 28px;
+    padding: 46px 22px 22px;
     position: relative;
+
+    display: flex;
+    flex-direction: column;
 }
 
+/* centered title at top middle */
 .project-title {
     position: absolute;
-    top: -12px;
-    left: 46px;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+
     background: #ffffff;
     border: 2px solid #ff6a00;
     padding: 2px 12px;
     font-size: 0.95rem;
     line-height: 1.1;
     color: #111111;
+    text-align: center;
+
+    max-width: calc(100% - 40px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+/* scrolling area */
+.file-list-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-top: 12px;
+    padding-right: 6px;
+}
+
+/* inner file stack */
 .file-list {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding-top: 28px;
+    gap: 18px;
 }
 
+/* file buttons */
 .file-btn {
     width: 100%;
     min-height: 46px;
@@ -83,7 +106,12 @@ body {
     padding: 10px 14px;
     font-size: 1rem;
     cursor: pointer;
-    transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+
+    transition:
+        transform 0.15s ease,
+        background-color 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease;
 }
 
 .file-btn:hover {
@@ -98,6 +126,21 @@ body {
 .file-btn:focus-visible {
     outline: none;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* selected state */
+.file-btn.selected {
+    background: #dbeafe;
+    border-color: #2563eb;
+}
+
+/* empty message */
+.file-empty {
+    padding: 14px;
+    background: #f4f4f4;
+    border: 2px dashed #8b8b8b;
+    color: #4b5563;
+    text-align: center;
 }
 
 /* right panel */
@@ -139,7 +182,6 @@ body {
 
 /* bottom navbar */
 .bottom-navbar-home {
-    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
@@ -205,7 +247,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #efabc2;
+    background: white;
     border: 2px solid #ffffff;
     border-radius: 12px;
     text-decoration: none;
@@ -214,10 +256,6 @@ body {
     flex-shrink: 0;
 }
 
-.bottom-navbar-home-icon-btn:hover {
-    background: #f4b6ca;
-    transform: translateY(-1px);
-}
 
 .bottom-navbar-home-icon-btn:active {
     transform: translateY(0);
