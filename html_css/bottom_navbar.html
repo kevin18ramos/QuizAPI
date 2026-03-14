@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generic Home Page</title>
-
 <link rel="stylesheet" href="{{ url_for('static', filename='bottom_navbar.css') }}">
 
 <header class="bottom-navbar">
+    <div class="bottom-navbar-box">
 
-    <div class="bottom-nav-left">
-        <a href="/" class="bottom-nav-btn">Reset question</a>
+        <form method="POST" action="/reset">
+            <button type="submit" class="bottom-nav-btn bottom-nav-btn-reset">
+                Reset prompt
+            </button>
+        </form>
+
+        <form method="POST" action="/save">
+            <button type="submit" class="bottom-nav-btn bottom-nav-btn-save">
+                Add to {quiz_name}
+            </button>
+        </form>
+
     </div>
-
-    <div class="bottom-nav-center">
-        <a href="/questions_cad" class="bottom-nav-btn">Add to {quiz_name}</a>
-    </div>
-
 </header>

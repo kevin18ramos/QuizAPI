@@ -4,43 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questions</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='question.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='frontend.css') }}">
-
 </head>
+
 <body>
 
-    {% include "top_navbar.html" %}
+{% include "top_navbar.html" %}
 
-    <main class="questions-page">
+<main class="questions-page">
 
-        <section class="question-layout">
+<section class="question-layout">
 
-<textarea name="answer" class="question-box" rows="4" placeholder="Enter question in the following format format: My name is ___ (three _ underscores)."></textarea>
-</div>
+<section class="question-card">
 
-            <section class="answer-grid">
+<label class="section-title">Question Prompt</label>
 
-    <textarea name="answer_1" class="answer-box {% if not answer_1_on %}display{% endif %}" rows="2" placeholder="Creat correct question text/color"></textarea>
-
-    <textarea name="answer_2" class="answer-box {% if not answer_2_on %}display{% endif %}" rows="2" placeholder="Creat correct question text/color"></textarea>
-
-    <textarea name="answer_3" class="answer-box {% if not answer_3_on %}display{% endif %}" rows="2" placeholder="Creat correct question text/color"></textarea>
-
-    <textarea name="answer_4" class="answer-box {% if not answer_4_on %}display{% endif %}" rows="2" placeholder="Creat correct question text/color"></textarea>
-
-
-
-
-
+<textarea
+    name="question"
+    class="question-box"
+    rows="4"
+    placeholder="Enter question in the following format: My name is ___ (three _ underscores)."
+>{{ question if question else '' }}</textarea>
 
 </section>
 
-        </section>
 
-    </main>
+<section class="answer-card">
 
-    {% include "bottom_navbar.html" %}
+<div class="section-title">Answers</div>
+
+<section class="answer-grid">
+
+{% for i in range(1, answer_count + 1) %}
+
+<textarea
+    name="answer_{{ i }}"
+    class="answer-box"
+    rows="2"
+    placeholder="Enter Answer {{ i }}">
+</textarea>
+
+{% endfor %}
+
+</section>
+
+</section>
+
+</section>
+
+</main>
+
+{% include "bottom_navbar.html" %}
 
 </body>
 </html>

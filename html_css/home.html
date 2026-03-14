@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Home</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='top_navbar.css') }}">
+</head>
+<body>
+
+    {% include "top_navbar.html" %}
+
+    <main class="home-page">
+        <section class="home-shell">
+
+            <section class="home-content">
+
+                <section class="project-panel">
+                    <div class="project-title">project name or selection</div>
+
+                    <div class="file-list">
+                        {% for file in files %}
+                            <button class="file-btn" type="button">
+                                {{ file }}
+                            </button>
+                        {% else %}
+                            <button class="file-btn" type="button">file name</button>
+                            <button class="file-btn" type="button">file name</button>
+                            <button class="file-btn" type="button">file name</button>
+                            <button class="file-btn" type="button">file name</button>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <section class="action-panel">
+                    <a href="/questions_cad" class="action-btn">Quiz</a>
+                    <a href="/edit" class="action-btn">Edit</a>
+                    <a href="/restore_default" class="action-btn">Restore Default</a>
+                </section>
+
+            </section>
+
+        </section>
+    </main>
+
+    {% include "bottom_navbar_home.html" %}
+
+</body>
+</html>

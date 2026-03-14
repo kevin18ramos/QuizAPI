@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generic Home Page</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='top_navbar.css') }}">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='frontend.css') }}">
+<header class="top-navbar">
+    <div class="top-navbar-box">
 
-<header class="navbar">
+        <div class="top-navbar-left">
+            <a href="/" class="top-navbar-btn">Quiz Directory</a>
+        </div>
 
-    <div class="nav-left">
-        <a href="/" class="nav-btn">Quiz Directory</a>
+        <div class="top-navbar-center">
+    <a href="/questions_cad" class="top-navbar-btn">
+        {% if request.path == "/questions_cad" %}
+            Change Prompt
+        {% else %}
+            Create Quiz
+        {% endif %}
+    </a>
+</div>
+
+        <div class="top-navbar-right">
+            <a href="/account" class="top-navbar-btn">Login</a>
+        </div>
+
     </div>
-
-    <div class="nav-center">
-        <a href="/questions_cad" class="nav-btn">Create Quiz</a>
-    </div>
-
-    <div class="nav-right">
-        <a href="/account" class="nav-btn">Login</a>
-    </div>
-
 </header>

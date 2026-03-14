@@ -8,7 +8,15 @@ app = Flask(
 
 @app.route("/")
 def home():
-    return render_template("question.html")
+    @app.route("/")
+    def home():
+        files = [
+            "file name",
+            "file name",
+            "file name",
+            "file name"
+        ]
+        return render_template("home.html", files=files)
 
 
 @app.route("/questions_cad")
@@ -21,7 +29,10 @@ def questions_cad():
         "test4.png"
     ]
 
-    return render_template("question.html")
+    return render_template(
+    "question.html",
+    answer_count=3
+)
 
 @app.route("/login")
 def login():
