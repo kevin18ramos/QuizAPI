@@ -65,9 +65,13 @@ def quiz_prompt_selection():
         q_am = request.form.get("blank_count")
 
         #category: ingredient
-        #answer_count: true_false
+        #q_style: true_false
         #category: amount
-        #answer_count: fill_blank
+        #q_style: fill_blank
+
+        if q_style == 'true_false':
+            a_am = 2
+            q_am = 0
 
         return render_template(
             "question.html",
@@ -75,7 +79,7 @@ def quiz_prompt_selection():
             category=category,
             q_style=q_style,
             answer_count=int(a_am),
-            q_am=int(q_am)
+            q_am=int(q_am) #will need to be coded
         )
 
         return jsonify(result)
