@@ -8,12 +8,15 @@
         </div>
 
         <div class="top-navbar-center">
-    <a href="/quiz_prompt_selection" class="top-navbar-btn">
-        {% if request.path == "/questions_cad" %}
-            Change Prompt
+    <a href="{% if request.path == '/quiz_prompt_selection' %}/save/complete{% else %}/quiz_prompt_selection{% endif %}"
+       class="top-navbar-btn">
+
+        {% if request.path == "/quiz_prompt_selection" %}
+            Complete
         {% else %}
             Create Quiz
         {% endif %}
+
     </a>
 </div>
 

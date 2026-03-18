@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 from python import data_add as da
 
+db = 'PostgresI'
+group_name = 'papasitos'
+
 app = Flask(
     __name__,
     template_folder="html_css",
@@ -26,10 +29,7 @@ pre_added_dir = [
 @app.route("/")
 def home():
 
-    return render_template("home.html", files=pre_added_dir,
-        show_edit=False,
-        show_restore=False,
-        show_add=False)
+    return render_template("home.html", files=pre_added_dir,show_edit=False,show_restore=False,show_add=False)
 
 
 @app.route("/questions_cad", methods=["GET", "POST"])
@@ -54,6 +54,41 @@ def questions_cad():
     "question.html",
     answer_count=4
 )
+
+@app.route("/save/complete", methods=["GET","POST"])
+def save_complete():
+    # run whatever processing you want here
+    print(question_pre_add)
+    group_id = 9999
+    user_id = 9999
+    for x in question_pre_add:
+        sql = f"""
+        INSERT INTO papasitos.default_quiz
+        VALUES (
+            {group_id},
+            {user_id},
+            '{x['pt']}',
+            '{x['category']}',
+            '{x['q_style']}',
+            {x['a_am']},
+            {x['q_am']},
+            {x['true_false_answer']},
+            '{x['question']}',
+            '{x['a1']}',
+            '{x['a2']}',
+            '{x['a3']}',
+            '{x['a4']}',
+            '{x['a5']}',
+            '{x['a6']}'
+        );
+        """
+        da.connection_run(db,'INSERT INTO {group_name}.default_quiz(group_id) values (9999);')
+    print("Quiz completed")
+
+
+    return render_template("home.html",
+                           files=pre_added_dir, show_edit=False, show_restore=False, show_add=False)
+
 
 @app.route("/login")
 def login():
