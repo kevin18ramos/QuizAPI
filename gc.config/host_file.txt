@@ -1,1 +1,1 @@
-db_name|host|user|password
+Postgres|host|username|password
