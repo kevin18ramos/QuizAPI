@@ -1,38 +1,16 @@
 import psycopg2
 from psycopg2 import OperationalError
 from psycopg2 import pool
+import Postgres as pg
 
 
-USER ='readonly_test'
-PASSWORD ='t3st123'
-
-def test_connection():
-    try:
-
-        db_pool = pool.SimpleConnectionPool(
-            1, 4,
-            host="localhost",
-            database="PostgresI",
-            user=USER,
-            password=PASSWORD
-        )
-
-        # Get connection from pool
-        connection = db_pool.getconn()
-
-        # Create cursor
-        cursor = connection.cursor()
-
-        return cursor
-
-    except OperationalError as e:
-        print("Connection failed")
-        print(e)
+#USER ='readonly_test'
+#PASSWORD ='t3st123'
 
 
-if __name__ == "__main__":
-    cursor = test_connection()
 
-    if cursor:
-        cursor.execute("SELECT current_database();")
-        print(cursor.fetchone())
+def connection(USER, PASSWORD, db_to_use):
+    return ( pg.connection(USER, PASSWORD, db_to_use))
+
+
+
