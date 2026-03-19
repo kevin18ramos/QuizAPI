@@ -1,9 +1,6 @@
-# This is a sample Python script.
 import argparse
-import Postgres as pg
+import gcc.postgres as gcp
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 #y = [['q']['a']['a'],['q']['a']['a']['a']]
 #dir = ['a'],['b'],['c'],['d']
@@ -14,19 +11,14 @@ import Postgres as pg
 # |_ planned_stages
 #   |_ q_a
 
-def connection(file_path):
-    cn = pg.connection(file_path)
+def connection():
+    cn = gcp.connection.connection(__file__)
     return cn
 
 
-def create_quiz(pt, category, q_style, a_am,q_am,qp,a1,a2,a3,a4):
-    questions
-    answer = {
-        "brand": "Ford",
-        "model": "Mustang",
-        "year": 1964
-    }
-    print(pt, category, q_style, a_am,q_am,qp,a1,a2,a3,a4)
+def quiz_input(question_pre_add):
+    cn = connection()
+    gcp.di_table(caller_file=__file__,schema_name='papasitos',table_name='default_quiz',value_dict=question_pre_add,cn=cn)
 
 
 
