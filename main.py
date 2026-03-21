@@ -62,7 +62,6 @@ def save_complete():
     for x in question_pre_add:
         table = x['pt']
     da.quiz_input(table,question_pre_add)
-    print("Quiz completed")
 
 
     return render_template("home.html",
@@ -98,7 +97,6 @@ def quiz_prompt_selection():
             a_am = 2
             q_am = 1
 
-        print('blank_count: ',q_am,'answer_count: ',a_am,'answer_style: ',q_style,'category: ',category,'title',pt)
         return render_template(
             "question.html",
             pt=pt,
@@ -109,7 +107,6 @@ def quiz_prompt_selection():
         )
 
 
-    print(pre_added_dir)
     return render_template("quiz_prompt_selection.html",
     pre_added_dir=pre_added_dir)
 
@@ -142,19 +139,19 @@ def save():
         # group_id = da.group_id()
         user_id = 9999
 
-        print('project/dir name: ',pt)
-        print('numeric or varchar: ',category)
-        print('t/f or fill in',q_style)
-        print('amount of answer boxes: ',a_am)
-        print('amount of questions: ',q_am)
-        print('if the correct aswer is t or f: ',true_false_answer)
-        print('what the question is', question)
-        print('answera1 : ', a1)
-        print('answera2 : ', a2)
-        print('answera3 : ', a3)
-        print('answera4 : ', a4)
-        print('answera5 : ', a5)
-        print('answera6 : ', a6)
+        #print('project/dir name: ',pt)
+        #print('numeric or varchar: ',category)
+        #print('t/f or fill in',q_style)
+        #print('amount of answer boxes: ',a_am)
+        #print('amount of questions: ',q_am)
+        #print('if the correct aswer is t or f: ',true_false_answer)
+        #print('what the question is', question)
+        #print('answera1 : ', a1)
+        #print('answera2 : ', a2)
+        #print('answera3 : ', a3)
+        #print('answera4 : ', a4)
+        #print('answera5 : ', a5)
+        #print('answera6 : ', a6)
 
 
 

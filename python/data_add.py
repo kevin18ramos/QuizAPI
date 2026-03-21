@@ -16,7 +16,7 @@ def connection():
 
 
 def quiz_input(table_name,value_dict,caller_file=__file__,schema_name='papasitos'):
-    t.di_table(table_name,value_dict,caller_file,schema_name)
+    t.di_table(caller_file, schema_name, table_name, value_dict)
 
 
 
