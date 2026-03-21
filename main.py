@@ -58,31 +58,10 @@ def questions_cad():
 @app.route("/save/complete", methods=["GET","POST"])
 def save_complete():
     # run whatever processing you want here
-    print(question_pre_add)
-    group_id = 9999
-    user_id = 9999
+    table = None
     for x in question_pre_add:
-        sql = f"""
-        INSERT INTO papasitos.default_quiz
-        VALUES (
-            {group_id},
-            {user_id},
-            '{x['pt']}',
-            '{x['category']}',
-            '{x['q_style']}',
-            {x['a_am']},
-            {x['q_am']},
-            {x['true_false_answer']},
-            '{x['question']}',
-            '{x['a1']}',
-            '{x['a2']}',
-            '{x['a3']}',
-            '{x['a4']}',
-            '{x['a5']}',
-            '{x['a6']}'
-        );
-        """
-        da.connection_run(db,'INSERT INTO {group_name}.default_quiz(group_id) values (9999);')
+        table = x['pt']
+    da.quiz_input(table,question_pre_add)
     print("Quiz completed")
 
 
@@ -158,6 +137,11 @@ def save():
         else:
             true_false_answer = False
 
+        # group_id = da.group_info()
+        group_id = 9999
+        # group_id = da.group_id()
+        user_id = 9999
+
         print('project/dir name: ',pt)
         print('numeric or varchar: ',category)
         print('t/f or fill in',q_style)
@@ -174,12 +158,11 @@ def save():
 
 
 
-        if q_style == 'true_false':
-            print('here')
-            da.create_quiz(pt, category, q_style, a_am,q_am,true_false_answer,question,a1,a2,a3,a4,a5,a6)
 
 
     answer = {
+        "user_id":user_id,
+        "group_id":group_id,
         "pt": pt,
         "category": category,
         "q_style": q_style,

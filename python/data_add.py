@@ -15,8 +15,8 @@ def connection():
     return cn
 
 
-def quiz_input(question_pre_add):
-    t.di_table(caller_file=__file__,schema_name='papasitos',table_name='default_quiz',value_dict=question_pre_add)
+def quiz_input(table_name,value_dict,caller_file=__file__,schema_name='papasitos'):
+    t.di_table(table_name,value_dict,caller_file,schema_name)
 
 
 
