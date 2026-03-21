@@ -1,6 +1,6 @@
 import argparse
 from gcc_postgres import task as t
-from gcc_postgres import pcn as c
+from gcc_postgres import pcn
 #y = [['q']['a']['a'],['q']['a']['a']['a']]
 #dir = ['a'],['b'],['c'],['d']
 
@@ -11,7 +11,7 @@ from gcc_postgres import pcn as c
 #   |_ q_a
 
 def connection():
-    cn = c.d_cn(__file__)
+    cn = pcn.d_cn(__file__)
     return cn
 
 
