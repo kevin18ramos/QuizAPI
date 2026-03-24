@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, jsonify, session
+import request
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from python import data_add as da
 from python import backend as be
 
@@ -12,14 +13,11 @@ app = Flask(
     static_folder="html_css"
 )
 
-session_list = be.user_info(['user_id','username','role'])
 
-for v in session_list:
-    session['user_id'] = v[0]
-    session['username'] = v[1]
-    session['role'] = v[2]
 
 #pre_added_dir,question_pre_add = da.base_extract('schema.general_file')
+user_id = None
+role = None
 
 #stores questions info temp
 question_pre_add = []
@@ -34,13 +32,8 @@ pre_added_dir = [
     ]
 
 
-#how will I do users?
 
 
-@app.route("/")
-def home():
-
-    return render_template("home.html", files=pre_added_dir,show_edit=False,show_restore=False,show_add=False)
 
 
 @app.route("/questions_cad", methods=["GET", "POST"])
@@ -84,9 +77,6 @@ def save_complete():
         x=x
     )
 
-@app.route("/login")
-def login():
-    return render_template("login.html")
 
 @app.route("/create_account" , methods=["GET", "POST"])
 def create_account():
@@ -131,7 +121,7 @@ def quiz_prompt_selection():
 
 @app.route("/save", methods=["GET", "POST"])
 def save():
-    global x
+    global x,user_id,role
     if request.method == "POST":
         pt = request.form.get("pt") #project
         category = request.form.get("category") #ingredient or size
@@ -194,12 +184,37 @@ def save():
     question_pre_add.append(answer)
     return render_template("quiz_prompt_selection.html",x=x)
 
-def login():
+@app.route("/", methods=["GET", "POST"])
+@app.route("/home", methods=["GET", "POST"])
+def home():
+    global user_id, role
+    return render_template("home.html", files=pre_added_dir,show_edit=role,show_restore=role,show_add=role)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login(fail=False):
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        columns = {"username": email,
+        "password": password}
+        output = be.validating_user(columns)
+        if output['confirmation']:
+            session["user_id"] = output['user_id']
+            session["role"] = output['role']
+            return redirect(url_for("home"))
+        else:
+            return render_template("login.html",fail_alert=True)
     return render_template("login.html")
 
-@app.route("/logout")
+
+@app.route("/logout", methods=["GET", "POST"])
 def logout():
-    return "Login page coming soon"
+    global user_id
+    global role
+    user_id = None
+    role = None
+    return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.run(debug=True)

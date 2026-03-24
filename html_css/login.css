@@ -157,6 +157,34 @@ body {
     }
 }
 
+.alert-error {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    background-color: #ff4d4d;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .alert-error {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+    .alert-error {
+        font-size: 16px;
+        padding: 14px;
+    }
+}
+
 /* Wide screens */
 @media (min-width: 1200px) {
     .auth-card {

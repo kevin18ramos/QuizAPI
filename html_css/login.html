@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='account.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
 
@@ -16,6 +16,11 @@
                 <h1 class="auth-title">Login</h1>
                 <p class="auth-subtitle">Sign in to continue</p>
 
+                {% if fail_alert %}
+                <div class="alert-error">
+                    Login failed
+                </div>
+                    {% endif %}
                 <form class="auth-form" method="POST" action="/login">
                     <div class="form-group">
                         <label for="email">Email</label>
