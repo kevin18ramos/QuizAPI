@@ -2,7 +2,9 @@ import request
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from python import data_add as da
 from python import backend as be
+from virt_m import bash_execute as bash_e
 
+vm_html,vm_css = bash_e.bash_interface.admin_vm_front_end()
 
 db = 'PostgresI'
 group_name = 'papasitos'
@@ -189,6 +191,24 @@ def save():
 def home():
     global user_id, role
     return render_template("home.html", files=pre_added_dir,show_edit=role,show_restore=role,show_add=role)
+
+@app.route("/admin/vm", methods=["GET"])
+def admin_vm():
+    if session.get("role") != "admin":
+        return redirect("/login")
+    res = t.auth()
+    if res:
+        status = s.bash.status()
+        if status:
+            vm_data = {
+                "vm_name": "quiz-vm",
+                "zone": "us-central1-a",
+                "status": "RUNNING"
+            }
+            return render_template(vm_html,css=vm_css, vm=vm_data)
+        return render_template(vm_html,css=vm_css)
+    else:
+        return render_template("admin_vm_er.html",)
 
 
 @app.route("/login", methods=["GET", "POST"])
