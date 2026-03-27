@@ -1,1 +1,1 @@
-vm_name
+vm_name|zone|project_id|instance_id
